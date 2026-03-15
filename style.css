@@ -1,1 +1,175 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f7f5ef;
+    color: #1f1f1f;
+    line-height: 1.6;
+}
+
+.container {
+    background-color: #ffffff;
+    padding: 20px 40px;
+    border-bottom: 1px solid #dcdcdc;
+}
+
+.logo {
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.logo h1 {
+    font-size: 40px;
+    color: #2f5d3a;
+    letter-spacing: 2px;
+}
+
+.logo p {
+    font-size: 14px;
+    color: #666666;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+}
+
+.menu ul {
+    list-style-type: none;
+    text-align: center;
+}
+
+.menu ul li {
+    display: inline-block;
+    margin: 0 15px;
+}
+
+.menu ul li a {
+    text-decoration: none;
+    color: #222222;
+    font-size: 15px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.menu ul li a:hover {
+    color: #2f5d3a;
+}
+
+.picture-text {
+    height: 600px;
+    background-image: url("https://yandex.com.tr/gorsel/search?text=matcha+photoslatte&pos=1&rpt=simage&img_url=https%3A%2F%2Ft4.ftcdn.net%2Fjpg%2F10%2F94%2F06%2F93%2F360_F_1094069346_I8ISjasEZDMM9e6r9572RhhdyJvHsHCO.jpg&from=tabbar&lr=11503");
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+
+.pic {
+    background-color: rgba(0, 0, 0, 0.45);
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    color: white;
+    padding-top: 220px;
+}
+
+.pic h2 {
+    font-size: 56px;
+    letter-spacing: 3px;
+    margin-bottom: 15px;
+    color: #2f5d3a;
+}
+
+.pic p {
+    font-size: 20px;
+    margin-bottom: 25px;
+}
+
+.btn {
+    display: inline-block;
+    text-decoration: none;
+    background-color: #6b8f71;
+    color: white;
+    padding: 12px 28px;
+    border-radius: 4px;
+    font-weight: bold;
+}
+
+.btn:hover {
+    background-color: #55735a;
+}
+
+.section-title {
+    text-align: center;
+    font-size: 32px;
+    margin-bottom: 40px;
+    color: #2f5d3a;
+}
+
+.featured {
+    padding: 60px 40px;
+}
+
+.card-container {
+    text-align: center;
+}
+
+.card {
+    display: inline-block;
+    width: 300px;
+    background-color: white;
+    margin: 15px;
+    border: 1px solid #dddddd;
+    border-radius: 8px;
+    overflow: hidden;
+    vertical-align: top;
+}
+
+.card img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+}
+
+.card h3 {
+    font-size: 24px;
+    margin: 15px 0 10px;
+    color: #2f5d3a;
+}
+
+.card p {
+    padding: 0 20px 20px;
+    font-size: 15px;
+    color: #555555;
+}
+
+.about {
+    background-color: #e8efe7;
+    padding: 60px 40px;
+    text-align: center;
+}
+
+.about-text {
+    width: 70%;
+    margin: auto;
+}
+
+.about-text h2 {
+    font-size: 32px;
+    color: #2f5d3a;
+    margin-bottom: 20px;
+}
+
+.about-text p {
+    font-size: 17px;
+    color: #333333;
+}
+
+.footer {
+    background-color: #1f2b22;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    font-size: 14px;
+}
