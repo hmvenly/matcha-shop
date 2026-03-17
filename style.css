@@ -55,7 +55,6 @@ body {
     color: #222222;
     font-size: 15px;
     font-weight: bold;
-    transition: 0.3s;
 }
 
 .menu ul li a:hover {
@@ -152,6 +151,8 @@ body {
 .about {
     background-color: #e8efe7;
     padding: 60px 40px;
+    justify-content: center;
+    align-items: center;
     text-align: center;
 }
 
