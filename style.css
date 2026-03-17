@@ -1,3 +1,4 @@
+/*1. Global Reset*/
 * {
     margin: 0;
     padding: 0;
@@ -5,12 +6,13 @@
 }
 
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: #f7f5ef;
     color: #1f1f1f;
     line-height: 1.6;
 }
 
+/*2. Header & Nav*/
 .container {
     display: flex;
     flex-direction: column;
@@ -46,31 +48,29 @@ body {
     gap: 30px;
 }
 
-.menu ul li {
-    list-style: none;
-}
-
 .menu ul li a {
     text-decoration: none;
     color: #222222;
     font-size: 15px;
     font-weight: bold;
+    transition: 0.3s;
 }
 
 .menu ul li a:hover {
     color: #2f5d3a;
 }
 
+/*3. Hero Section*/
 .picture-text {
     height: 600px;
-    background-image: url("https://yandex.com.tr/gorsel/search?text=matcha+photoslatte&pos=1&rpt=simage&img_url=https%3A%2F%2Ft4.ftcdn.net%2Fjpg%2F10%2F94%2F06%2F93%2F360_F_1094069346_I8ISjasEZDMM9e6r9572RhhdyJvHsHCO.jpg&from=tabbar&lr=11503");
+    background-image: url("https://t4.ftcdn.net/jpg/10/94/06/93/360_F_1094069346_I8ISjasEZDMM9e6r9572RhhdyJvHsHCO.jpg");
     background-size: cover;
     background-position: center;
     position: relative;
 }
 
 .pic {
-    background-color: rgba(0, 0, 0, 0.45);
+    background-color: rgba(0, 0, 0, 0.4);
     width: 100%;
     height: 100%;
     text-align: center;
@@ -82,203 +82,43 @@ body {
     font-size: 56px;
     letter-spacing: 3px;
     margin-bottom: 15px;
-    color: #2f5d3a;
+    color: #ffffff; /* Contrast fix */
 }
 
-.pic p {
-    font-size: 20px;
-    margin-bottom: 25px;
-}
-
-.btn {
-    display: inline-block;
-    text-decoration: none;
-    background-color: #6b8f71;
-    color: white;
-    padding: 12px 28px;
-    border-radius: 4px;
-    font-weight: bold;
-}
-
-.btn:hover {
-    background-color: #55735a;
-}
-
+/*4. Cards & Content*/
 .section-title {
     text-align: center;
     font-size: 32px;
-    margin-bottom: 40px;
+    margin: 60px 0 40px;
     color: #2f5d3a;
-}
-
-.featured {
-    padding: 60px 40px;
 }
 
 .card-container {
-    text-align: center;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 30px;
+    padding: 0 40px 60px;
 }
 
 .card {
-    display: inline-block;
     width: 300px;
     background-color: white;
-    margin: 15px;
     border: 1px solid #dddddd;
-    border-radius: 8px;
+    border-radius: 12px;
     overflow: hidden;
-    vertical-align: top;
+    transition: transform 0.3s;
 }
 
-.card img {
-    width: 100%;
-    height: 220px;
-    object-fit: cover;
-}
+.card:hover { transform: translateY(-5px); }
 
-.card h3 {
-    font-size: 24px;
-    margin: 15px 0 10px;
-    color: #2f5d3a;
-}
+.card img { width: 100%; height: 220px; object-fit: cover; }
 
-.card p {
-    padding: 0 20px 20px;
-    font-size: 15px;
-    color: #555555;
-}
+.card h3 { font-size: 24px; margin: 15px; color: #2f5d3a; }
 
-.about {
-    background-color: #e8efe7;
-    padding: 60px 40px;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-}
+.card p { padding: 0 15px 20px; font-size: 14px; color: #555555; }
 
-.about-text {
-    width: 70%;
-    margin: auto;
-}
-
-.about-text h2 {
-    font-size: 32px;
-    color: #2f5d3a;
-    margin-bottom: 20px;
-}
-
-.about-text p {
-    font-size: 17px;
-    color: #333333;
-}
-
-.footer {
-    background-color: #1f2b22;
-    color: white;
-    text-align: center;
-    padding: 20px;
-    font-size: 14px;
-}
-
-.floating-btn {
-    position: fixed;
-    bottom: 30px;
-    right: 30px;
-    background-color: #2f5d3a; 
-    color: white;
-    border: none;
-    padding: 12px 25px;
-    border-radius: 50px; 
-    font-weight: bold;
-    font-size: 14px;
-    cursor: pointer;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-    z-index: 999; 
-    transition: transform 0.3s ease;
-}
-
-.floating-btn:hover {
-    transform: scale(1.05);
-    background-color: #3d7a4c;
-}
-
-.close-btn {
-    position: absolute;
-    top: 30px;
-    right: 40px; 
-    font-size: 40px; 
-    background: none;
-    border: none;
-    color: #2f5d3a; 
-    cursor: pointer;
-    font-weight: 300; 
-    transition: transform 0.3s ease, color 0.3s ease;
-    z-index: 1001;
-}
-
-.close-btn:hover {
-    transform: rotate(90deg); 
-    color: #6b8f71; 
-}
-@media (max-width: 768px) {
-
-    .container {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .menu ul li {
-        display: block;
-        margin: 10px 0;
-    }
-
-    .picture-text {
-        height: 400px;
-    }
-
-    .pic {
-        padding-top: 120px;
-    }
-
-    .pic h2 {
-        font-size: 30px;
-    }
-
-    .card {
-        display: block;
-        width: 90%;
-        margin: 15px auto;
-    }
-
-    .about-text {
-        width: 100%;
-    } }
-
-@media print {
-
-    .menu,
-    .btn,
-    .footer {
-        display: none;
-    }
-
-    body {
-        background: white;
-        color: black;
-    }
-
-    .picture-text {
-        background: none;
-        height: auto;
-    }
-
-    .card {
-        width: 100%;
-        border: 1px solid black;
-    }
-}
-
+/*5. Overlays (Menu/Login/Points)*/
 .overlay {
     height: 100%;
     width: 0; 
@@ -286,27 +126,111 @@ body {
     z-index: 1000;
     top: 0;
     left: 0;
-    background-color: #f7f5ef; 
+    background-color: rgba(247, 245, 239, 0.98); 
     overflow-x: hidden;
     transition: 0.5s;
     display: flex;
-    flex-direction: column;
-    align-items: center;
     justify-content: center;
+    align-items: center;
 }
 
 .overlay-content {
-    position: relative;
     width: 100%;
     max-width: 600px;
+    padding: 40px;
     text-align: center;
-    padding: 20px;
 }
 
+.close-btn {
+    position: absolute;
+    top: 30px;
+    right: 40px;
+    font-size: 50px;
+    background: none;
+    border: none;
+    color: #2f5d3a;
+    cursor: pointer;
+}
+
+/*6.Login Card*/
+.login-card {
+    background: white;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    width: 100%;
+    max-width: 380px;
+}
+
+.login-card input {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: 1px solid #e2e7d8;
+    border-radius: 8px;
+    background: #fcfdfb;
+}
+
+/*7.Rewards/Points Dashboard*/
+.points-circle {
+    width: 140px;
+    height: 140px;
+    border: 3px solid #2f5d3a;
+    border-radius: 50%;
+    margin: 20px auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background: white;
+}
+
+.points-circle span { font-size: 38px; font-weight: bold; color: #2f5d3a; }
+
+.progress-container {
+    width: 100%;
+    height: 8px;
+    background: #e2e7d8;
+    border-radius: 10px;
+    margin: 20px 0;
+    overflow: hidden;
+}
+
+.progress-bar {
+    height: 100%;
+    background: #2f5d3a;
+    width: 0%;
+    transition: width 1s ease-in-out;
+}
+
+/*8.Buttons*/
+.btn {
+    display: inline-block;
+    background-color: #6b8f71;
+    color: white;
+    padding: 12px 28px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn:hover { background-color: #2f5d3a; }
 
 .floating-btn {
     position: fixed;
-    bottom: 20px;
-    right: 20px;
-    z-index: 99;
+    bottom: 30px;
+    right: 30px;
+    z-index: 999;
+    border-radius: 50px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+.footer {
+    background-color: #1f2b22;
+    color: white;
+    text-align: center;
+    padding: 30px;
+    font-size: 13px;
 }
