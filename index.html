@@ -188,119 +188,17 @@
             alert("Invalid ID or Password 🍵");
         }
     };
+ 
+
+
+    document.addEventListener('keypress', (e) => {
+     if (e.key === 'Enter' && loginOverlay.style.width === "100%") {
+              loginSubmit.click();
+      }
+     });
 
     document.getElementById('closeLogin').onclick = () => loginOverlay.style.width = "0%";
     document.getElementById('closeDashboard').onclick = () => dashboard.style.width = "0%";
-</script>
-
-</body>
-</html>
-    
-    const users = {
-        "22401018": {
-            name: "Aishanur",
-            pass: "Aishanur",
-            points: 650,
-            orders: [
-                { item: "Iced Banana Cloud Matcha", notes: "With oat milk / Less ice", pts: "+100" },
-                { item: "Matcha Mochi Donut", notes: "Extra glaze", pts: "+50" },
-                { item: "Ceremonial Matcha", notes: "Hot / No sweetener", pts: "+100" }
-            ]
-        },
-        "22402692": {
-            name: "Beyza",
-            pass: "Beyza",
-            points: 450,
-            orders: [
-                { item: "Strawberry Matcha Latte", notes: "With soy milk / 50% sugar", pts: "+100" },
-                { item: "Iced Matcha", notes: "Regular milk / Extra ice", pts: "+100" }
-            ]
-        }
-    };
-
-    const userData = users[userField];
-
-    if (userData && passField === userData.pass) {
-        // Show dashboard
-        loginOverlay.style.width = "0%";
-        dashboard.style.width = "100%";
-        
-        // Update Name & Points
-        document.querySelector('#pointsDashboard h2').innerText = `${userData.name}'s Profile`;
-        document.getElementById('userPoints').innerText = userData.points;
-        
-        // Animate Progress Bar
-        let progressPercent = (userData.points / 800) * 100;
-        setTimeout(() => {
-            progressBar.style.width = progressPercent + "%";
-        }, 500);
-
-        // --- THE FIX: INJECTING THE LIST ---
-        const orderList = document.getElementById('orderList');
-        orderList.innerHTML = ""; // Clear the "empty" space
-        
-        userData.orders.forEach(order => {
-            orderList.innerHTML += `
-                <li style="margin-bottom: 15px; border-bottom: 0.5px solid rgba(47, 93, 58, 0.2); padding-bottom: 8px;">
-                    <div style="display: flex; justify-content: space-between; align-items: baseline;">
-                        <span style="font-weight: bold; text-transform: uppercase; font-size: 0.85rem;">${order.item}</span>
-                        <span style="color: #6b8f71; font-size: 0.8rem; font-weight: bold;">${order.pts}</span>
-                    </div>
-                    <div style="font-style: italic; font-size: 0.75rem; color: #666; margin-top: 2px;">
-                        ${order.notes}
-                    </div>
-                </li>`;
-        });
-
-    } else {
-        alert("Invalid ID or Password 🍵");
-    }
-};
-
-    const userData = users[userField];
-
-    // id checkliyoz
-    if (userData && passField === userData.pass) {
-        let goal = 800;
-        
-        loginOverlay.style.width = "0%";
-        dashboard.style.width = "100%";
-
-        //kac puanimiz var 
-        document.querySelector('#pointsDashboard h2').innerText = `${userData.name}'s Profile`;
-        document.getElementById('userPoints').innerText = userData.points;
-        
-        
-        let progressPercent = (userData.points / goal) * 100;
-        setTimeout(() => {
-            progressBar.style.width = progressPercent + "%";
-        }, 500);
-
-       //orderlarimizi gormek icin foto eklersn sonra
-        const orderList = document.getElementById('orderList');
-        orderList.innerHTML = ""; 
-
-        userData.orders.forEach(order => {
-            orderList.innerHTML += `
-                <li style="margin-bottom: 15px; border-bottom: 0.5px solid rgba(47, 93, 58, 0.2); padding-bottom: 8px;">
-                    <div style="display: flex; justify-content: space-between; align-items: baseline;">
-                        <span style="font-weight: bold; text-transform: uppercase; font-size: 0.85rem;">${order.item}</span>
-                        <span style="color: #6b8f71; font-size: 0.8rem; font-weight: bold;">${order.pts}</span>
-                    </div>
-                    <div style="font-style: italic; font-size: 0.75rem; color: #666; margin-top: 2px;">
-                        ${order.notes}
-                    </div>
-                </li>`;
-        });
-
-    } else {
-        alert("Invalid ID or Password. Check your details! 🍵");
-    }
-
-
-    document.getElementById('closeLogin').onclick = () => loginOverlay.style.width = "0%";
-    document.getElementById('closeDashboard').onclick = () => dashboard.style.width = "0%";
-   
 </script>
 
 </body>
