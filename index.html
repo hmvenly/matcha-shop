@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ネコ抹茶</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="styles/style.css">
 </head>
 <body>
 
@@ -71,9 +71,51 @@
         </section>
     </main>
 
+
+
     <footer class="footer">
         <p>&copy; 2026 Neko Matcha. All rights reserved.</p>
     </footer>
-    
+    <button id="openMenu" class="floating-btn">View Menu</button>
+
+<div id="menuOverlay" class="overlay">
+    <button id="closeMenu" class="close-btn">&times;</button>
+    <div class="overlay-content">
+        <h2 class="section-title">Neko Matcha Menu</h2>
+        <div class="menu-grid">
+            <div class="menu-item">
+                <h4>Ceremonial Matcha</h4>
+                <p>$6.50</p>
+            </div>
+            <div class="menu-item">
+                <h4>Strawberry Matcha Latte</h4>
+                <p>$7.50</p>
+            </div>
+            <div class="menu-item">
+                <h4>Black Sesame Matcha</h4>
+                <p>$8.00</p>
+            </div>
+            <div class="menu-item">
+                <h4>Matcha Mochi Donut</h4>
+                <p>$4.50</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    const openBtn = document.getElementById('openMenu');
+    const closeBtn = document.getElementById('closeMenu');
+    const overlay = document.getElementById('menuOverlay');
+
+    openBtn.addEventListener('click', () => {
+        overlay.style.width = "100%";
+    });
+
+    closeBtn.addEventListener('click', () => {
+        overlay.style.width = "0%";
+    });
+</script>
+
 </body>
 </html>
