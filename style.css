@@ -12,6 +12,9 @@ body {
 }
 
 .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     background-color: #ffffff;
     padding: 20px 40px;
     border-bottom: 1px solid #dcdcdc;
@@ -37,12 +40,14 @@ body {
 
 .menu ul {
     list-style-type: none;
-    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
 }
 
 .menu ul li {
-    display: inline-block;
-    margin: 0 15px;
+    list-style: none;
 }
 
 .menu ul li a {
@@ -172,4 +177,63 @@ body {
     text-align: center;
     padding: 20px;
     font-size: 14px;
+}
+
+@media (max-width: 768px) {
+
+    .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .menu ul li {
+        display: block;
+        margin: 10px 0;
+    }
+
+    .picture-text {
+        height: 400px;
+    }
+
+    .pic {
+        padding-top: 120px;
+    }
+
+    .pic h2 {
+        font-size: 30px;
+    }
+
+    .card {
+        display: block;
+        width: 90%;
+        margin: 15px auto;
+    }
+
+    .about-text {
+        width: 100%;
+    } }
+
+@media print {
+
+    .menu,
+    .btn,
+    .footer {
+        display: none;
+    }
+
+    body {
+        background: white;
+        color: black;
+    }
+
+    .picture-text {
+        background: none;
+        height: auto;
+    }
+
+    .card {
+        width: 100%;
+        border: 1px solid black;
+    }
 }
