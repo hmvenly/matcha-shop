@@ -31,6 +31,14 @@ body {
     font-size: 40px;
     color: #2f5d3a;
     letter-spacing: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.logo h1 img {
+    height: 2em;
 }
 
 .logo p {
@@ -63,14 +71,23 @@ body {
 /*3. Hero Section*/
 .picture-text {
     height: 600px;
-    background-image: url("https://t4.ftcdn.net/jpg/10/94/06/93/360_F_1094069346_I8ISjasEZDMM9e6r9572RhhdyJvHsHCO.jpg");
-    background-size: cover;
-    background-position: center;
     position: relative;
+    overflow: hidden;
+}
+
+.bg-vid{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 .pic {
-    background-color: rgba(0, 0, 0, 0.4);
+    position: relative;
+    z-index: 1;
+    background-color: rgba(0, 0, 0, 0.45);
     width: 100%;
     height: 100%;
     text-align: center;
