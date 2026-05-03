@@ -322,3 +322,57 @@ input:focus {
     transition: width 1s ease-in-out;
     border-radius: 10px;
 }
+
+/* burdan sonrasını ekledim */
+.toast-box {
+    position: fixed;
+    top: 25px;
+    right: 25px;
+    z-index: 2000;
+}
+
+.toast-message {
+    background-color: var(--matcha-dark);
+    color: white;
+    padding: 15px 22px;
+    border-radius: 15px;
+    margin-bottom: 10px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+    animation: slideIn 0.4s ease;
+}
+
+.toast-message.error {
+    background-color: #8b2f2f;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(120%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+/* Responsive jQuery Menu */
+.slicknav_menu {
+    display: none;
+    background: var(--matcha-dark);
+}
+
+@media screen and (max-width: 768px) {
+    .menu {
+        display: none;
+    }
+
+    .slicknav_menu {
+        display: block;
+    }
+
+    header.container {
+        flex-direction: column;
+        gap: 15px;
+    }
+}
