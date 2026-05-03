@@ -3,39 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ネコ抹茶</title>
-    <link rel="stylesheet" href="styles/style.css">
+    <title>ネコ抹茶 - Neko Matcha</title>
+    
+    <link rel="icon" type="image/png" href="assets/images/favicon.png">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <link rel="stylesheet" href="assets/styles/style.css">
 </head>
 <body>
 
-    <header class="container">
+    <header class="container mt-3"> 
         <div class="logo">
-             <h1>ネコ抹茶 <img src="images/logo.png" alt=""></h1> 
+            <h1>ネコ抹茶</h1>
             <p>Neko Matcha</p>
         </div>
 
         <nav class="menu">
             <ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Menu</a></li>
+                <li><a href="index.html">Home</a></li>
                 <li><a href="#">Our Matcha</a></li>
                 <li><a href="#">Cafe</a></li>
                 <li><a href="#">Contact</a></li>
-                <li><a href="#" id="loginTrigger">Login</a></li>
+                <li><a href="login.html">Account <i class="fa-solid fa-user"></i></a></li> 
             </ul>
         </nav>
     </header>
 
     <section class="picture-text">
+        <video autoplay loop muted playsinline class="bg-video">
+            <source src="assets/images/cafe.mp4" type="video/mp4">
+        </video>
         
- <video class="bg-vid" autoplay muted loop>
-        <source src="images/vid.mp4" >
-    </video>
-        
+        <div class="video-overlay"></div>
+
         <div class="pic">
             <h2>PREMIUM JAPANESE MATCHA</h2>
             <p>Exquisite taste, joyful experience..</p>
-            <a href="#" class="btn">Explore Menu</a>
+            <button id="openOrder" class="btn">Order Now</button>
         </div>
     </section>
 
@@ -43,168 +49,74 @@
         <section class="featured">
             <h2 class="section-title">Featured Matcha Drinks</h2>
             <div class="card-container">
-                <div class="card">
-                    <img src="" alt="Matcha Latte">
+                <div class="card shadow-sm rounded">
                     <h3>Matcha Latte</h3>
                     <p>Smooth, creamy, and balanced with rich Japanese matcha.</p>
                 </div>
-                <div class="card">
-                    <img src="" alt="Iced Matcha">
+                <div class="card shadow-sm rounded">
                     <h3>Iced Matcha</h3>
                     <p>Fresh and cool matcha for a clean and vibrant taste.</p>
                 </div>
-                <div class="card">
-                    <img src="" alt="Matcha Dessert">
+                <div class="card shadow-sm rounded">
                     <h3>Matcha Dessert</h3>
                     <p>Soft sweetness with deep green tea flavor and texture.</p>
                 </div>
             </div>
         </section>
-
-        <section class="about">
-            <div class="about-text">
-                <h2>About Neko Matcha</h2>
-                <p>
-                    Neko Matcha is a modern Japanese-inspired café concept focused on
-                    premium matcha drinks, calm atmosphere, and minimalist design.
-                    Our goal is to bring Tokyo café energy into a warm and elegant digital experience.
-                </p>
-            </div>
-        </section>
     </main>
 
-    <footer class="footer">
-        <p>&copy; 2026 Neko Matcha. All rights reserved.</p>
-    </footer>
+    <div id="orderOverlay" class="overlay">
+        <button id="closeOrder" class="close-btn">&times;</button>
+        <div class="overlay-content order-content">
+            <h2 class="section-title">Build Your Matcha</h2>
 
-    <button id="openMenu" class="floating-btn">View Menu</button>
+            <div class="order-grid" style="display: flex; gap: 20px; justify-content: center;">
+                
+                <div class="order-card shadow-sm rounded bg-white p-3 text-center" style="width: 250px;">
+                    <img src="assets/images/matcha.png" alt="Ceremonial Iced Matcha" class="img-fluid rounded mb-3" style="height: 180px; width: 100%; object-fit: cover;">
+                    <h4>Ceremonial Iced Matcha</h4>
+                    <p class="price">$6.50 <span class="pts-badge" style="color: var(--matcha-light);">+65 pts</span></p>
+                    <select id="milk1" class="form-select mb-2">
+                        <option value="Regular Milk">Regular Milk</option>
+                        <option value="Almond Milk">Almond Milk</option>
+                        <option value="Oat Milk">Oat Milk</option>
+                    </select>
+                    <select id="syrup1" class="form-select mb-3">
+                        <option value="No Syrup">No Syrup</option>
+                        <option value="Classic Syrup">Classic Syrup</option>
+                    </select>
+                    <button class="btn add-to-cart w-100" onclick="addToCart('Ceremonial Iced Matcha', 6.50, 65, 'milk1', 'syrup1')">Add</button>
+                </div>
 
-    <div id="menuOverlay" class="overlay">
-        <button id="closeMenu" class="close-btn">&times;</button>
-        <div class="overlay-content">
-            <h2 class="section-title">Neko Matcha Menu</h2>
-            <div class="menu-grid">
-                <div class="menu-item"><h4>1. Ceremonial Matcha</h4><p>$6.50</p></div>
-                <div class="menu-item"><h4>2. Strawberry Matcha Latte</h4><p>$7.50</p></div>
-                <div class="menu-item"><h4>3. Banana Cloud Matcha</h4><p>$8.00</p></div>
-                <div class="menu-item"><h4>4. Matcha Mochi Donut</h4><p>$4.50</p></div>
+                <div class="order-card shadow-sm rounded bg-white p-3 text-center" style="width: 250px;">
+                    <img src="assets/images/matchastrawberry.png" alt="Strawberry Matcha Cloud" class="img-fluid rounded mb-3" style="height: 180px; width: 100%; object-fit: cover;">
+                    <h4>Strawberry Matcha Cloud</h4>
+                    <p class="price">$7.50 <span class="pts-badge" style="color: var(--matcha-light);">+75 pts</span></p>
+                    <select id="milk2" class="form-select mb-2">
+                        <option value="Regular Milk">Regular Milk</option>
+                        <option value="Almond Milk">Almond Milk</option>
+                    </select>
+                    <select id="syrup2" class="form-select mb-3">
+                        <option value="No Syrup">No Syrup</option>
+                        <option value="Strawberry Purée">Extra Strawberry</option>
+                    </select>
+                    <button class="btn add-to-cart w-100" onclick="addToCart('Strawberry Matcha Cloud', 7.50, 75, 'milk2', 'syrup2')">Add</button>
+                </div>
+
+            </div>
+
+            <div class="cart-summary">
+                <h3>Your Cart</h3>
+                <ul id="cartItems"></ul>
+                <div class="cart-totals">
+                    <p>Total: $<span id="cartTotal">0.00</span></p>
+                    <p>Points to Earn: <span id="cartPoints" style="color: var(--matcha-dark); font-weight: bold;">0</span> pts</p>
+                </div>
+                <button class="btn" style="width:100%; margin-top: 15px;" onclick="checkout()">Checkout</button>
             </div>
         </div>
     </div>
 
-    <div id="loginOverlay" class="overlay">
-        <button id="closeLogin" class="close-btn">&times;</button>
-        <div class="login-card" style="margin: auto;"> <h2>Welcome Back</h2>
-            <p>Enter details to check your Matcha Points</p>
-            <input type="text" id="username" placeholder="Username">
-            <input type="password" id="password" placeholder="Password">
-            <button id="loginSubmit" class="btn">Login</button>
-        </div>
-    </div>
-
-    <div id="pointsDashboard" class="overlay">
-        <button id="closeDashboard" class="close-btn">&times;</button>
-        <div class="overlay-content">
-            <h2 class="section-title">Your Rewards</h2>
-            <div class="points-circle">
-                <span id="userPoints">0</span>
-                <p>POINTS</p>
-            </div>
-            <p class="status-msg">800 points = 1 Free Treat ✨</p>
-            <div class="progress-container">
-                <div class="progress-bar" id="progressBar"></div>
-            </div>
-            <p id="rewardMessage">You're doing great!</p>
-      <div class="pre-orders" style="max-width: 400px; margin: 30px auto; text-align: left;">
-            <h3 style="border-bottom: 1px solid #2f5d3a; padding-bottom: 5px; margin-bottom: 15px; font-size: 1rem;">PREVIOUS ORDERS</h3>
-            <ul id="orderList" style="list-style: none; padding: 0; font-family: monospace;">
-                </ul>
-           </div>
-        </div>
-
-    </div>
-<script>
-    // 1. Menu Logic
-    const openBtn = document.getElementById('openMenu');
-    const closeBtn = document.getElementById('closeMenu');
-    const menuOverlay = document.getElementById('menuOverlay');
-
-    openBtn.onclick = () => menuOverlay.style.width = "100%";
-    closeBtn.onclick = () => menuOverlay.style.width = "0%";
-
-    // 2. Login & Dashboard Logic
-    const loginTrigger = document.getElementById('loginTrigger');
-    const loginOverlay = document.getElementById('loginOverlay');
-    const loginSubmit = document.getElementById('loginSubmit');
-    const dashboard = document.getElementById('pointsDashboard');
-    const progressBar = document.getElementById('progressBar');
-
-    const users = {
-        "22401018": {
-            name: "Aishanur", pass: "Aishanur", points: 650,
-            orders: [
-                { item: "Iced Banana Cloud Matcha", notes: "With oat milk / Less ice", pts: "+100" },
-                { item: "Matcha Mochi Donut", notes: "Extra glaze", pts: "+50" },
-                { item: "Ceremonial Matcha", notes: "Hot / No sweetener", pts: "+100" }
-            ]
-        },
-        "22402692": {
-            name: "Beyza", pass: "Beyza", points: 450,
-            orders: [
-                { item: "Strawberry Matcha Latte", notes: "With soy milk / 50% sugar", pts: "+100" },
-                { item: "Iced Matcha", notes: "Regular milk / Extra ice", pts: "+100" }
-            ]
-        }
-    };
-
-    loginTrigger.onclick = (e) => {
-        e.preventDefault();
-        loginOverlay.style.width = "100%";
-    };
-
-    loginSubmit.onclick = () => {
-        const userField = document.getElementById('username').value;
-        const passField = document.getElementById('password').value;
-        const userData = users[userField];
-
-        if (userData && passField === userData.pass) {
-            loginOverlay.style.width = "0%";
-            dashboard.style.width = "100%";
-            
-            document.querySelector('#pointsDashboard h2').innerText = `${userData.name}'s Profile`;
-            document.getElementById('userPoints').innerText = userData.points;
-            
-            let progressPercent = (userData.points / 800) * 100;
-            setTimeout(() => { progressBar.style.width = progressPercent + "%"; }, 500);
-
-            const orderList = document.getElementById('orderList');
-            orderList.innerHTML = ""; 
-            userData.orders.forEach(order => {
-                orderList.innerHTML += `
-                    <li style="margin-bottom: 15px; border-bottom: 0.5px solid rgba(47, 93, 58, 0.2); padding-bottom: 8px;">
-                        <div style="display: flex; justify-content: space-between; align-items: baseline;">
-                            <span style="font-weight: bold; text-transform: uppercase; font-size: 0.85rem;">${order.item}</span>
-                            <span style="color: #6b8f71; font-size: 0.8rem; font-weight: bold;">${order.pts}</span>
-                        </div>
-                        <div style="font-style: italic; font-size: 0.75rem; color: #666; margin-top: 2px;">${order.notes}</div>
-                    </li>`;
-            });
-        } else {
-            alert("Invalid ID or Password 🍵");
-        }
-    };
- 
-
-
-    document.addEventListener('keypress', (e) => {
-     if (e.key === 'Enter' && loginOverlay.style.width === "100%") {
-              loginSubmit.click();
-      }
-     });
-
-    document.getElementById('closeLogin').onclick = () => loginOverlay.style.width = "0%";
-    document.getElementById('closeDashboard').onclick = () => dashboard.style.width = "0%";
-</script>
-
+    <script src="assets/scripts/script.js"></script>
 </body>
 </html>
