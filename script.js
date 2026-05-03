@@ -1,4 +1,67 @@
-// === ORDERING & CART LOGIC === //
+// burdan sonrasını ekledim
+
+    const adminUser = { // bunu ekledim
+    id: "admin",
+    pass: "admin123",
+    points: 0,
+    role: "admin"
+};
+
+function showMessage(message, type) {
+    const toastBox = document.getElementById("toastBox");
+
+    if (!toastBox) {
+        return;
+    }
+
+    const toast = document.createElement("div");
+    toast.className = "toast-message";
+
+    if (type === "error") {
+        toast.className += " error";
+    }
+
+    toast.innerText = message;
+    toastBox.appendChild(toast);
+
+    setTimeout(function () {
+        toast.remove();
+    }, 3000);
+}
+
+$(document).ready(function () {
+    $(".menu ul").slicknav({
+        label: "Menu",
+        prependTo: "body"
+    });
+});
+
+const accountLink = document.getElementById("accountLink");
+const savedUserForHeader = JSON.parse(localStorage.getItem("nekoUser"));
+
+if (accountLink && savedUserForHeader) {
+    accountLink.innerHTML = `Welcome, ${savedUserForHeader.id}!`;
+
+    if (savedUserForHeader.role === "admin") {
+        const menuList = document.querySelector(".menu ul");
+
+        const adminItem = document.createElement("li");
+        adminItem.innerHTML = `<a href="admin.html" style="color: var(--matcha-dark); font-weight: 600;">HQ <i class="fa-solid fa-gear"></i></a>`;
+
+        menuList.insertBefore(adminItem, accountLink.parentElement);
+    }
+    const logoutItem = document.createElement("li");
+logoutItem.innerHTML = `<a href="#" id="logoutLink">Logout <i class="fa-solid fa-right-from-bracket"></i></a>`;
+accountLink.parentElement.after(logoutItem);
+
+document.getElementById("logoutLink").onclick = function () {
+    localStorage.removeItem("nekoUser");
+    window.location.href = "index.html";
+};
+}
+
+// buraya kadar
+
 const openOrder = document.getElementById('openOrder');
 const closeOrder = document.getElementById('closeOrder');
 const orderOverlay = document.getElementById('orderOverlay');
@@ -49,11 +112,15 @@ function updateCartUI() {
 }
 
 function checkout() {
-    if(cart.length === 0) return alert("Your cart is empty! Add some matcha first 🍵");
+    if (cart.length === 0) { // değiştim
+    showMessage("Your cart is empty! Add some matcha first 🍵", "error"); // bu
+    return; // bu
+} // bu
     
     const savedUser = JSON.parse(localStorage.getItem('nekoUser'));
+
     if (!savedUser) {
-        alert("Please Login or Sign Up to earn points on this order!");
+       showMessage("Please Login or Sign Up to earn points on this order!", "error"); // değiştim
         window.location.href = "login.html"; // Redirects to your new login page!
         return;
     }
@@ -62,7 +129,7 @@ function checkout() {
     savedUser.points += totalPoints;
     localStorage.setItem('nekoUser', JSON.stringify(savedUser));
 
-    alert(`Order placed! You earned ${totalPoints} points ✨`);
+   showMessage(`Order placed! You earned ${totalPoints} points ✨`, "success"); // değiştim
     
     // Reset cart
     cart = [];
@@ -81,27 +148,51 @@ if (signupSubmit) {
         const userId = document.getElementById('newUserId').value;
         const userPass = document.getElementById('newUserPass').value;
 
-        if (!userId || !userPass) return alert("Please enter ID and Password! 🍵");
+        if (!userId || !userPass) { // bu kısmı değiştim
+    showMessage("Please enter ID and Password! 🍵", "error"); // bu
+    return; } // bu
 
-        const newUser = { id: userId, pass: userPass, points: 100 }; // Gives them 100 free points!
+    if (userPass.length < 6) { // bunu da ekledim
+    showMessage("Password must be at least 6 characters.", "error");
+    return;
+}
+
+if (!/[0-9]/.test(userPass)) { // bunu da ekledim
+    showMessage("Password must include at least one number.", "error");
+    return;
+}
+
+        const newUser = { id: userId, pass: userPass, points: 100, role: "customer" }; // değiştim
         localStorage.setItem('nekoUser', JSON.stringify(newUser));
         
-        alert("Account created! Let's get some matcha ✨");
+        showMessage("Account created! Let's get some matcha ✨", "success"); // değiştim
         window.location.href = "index.html"; // Sends them back to home
     };
 }
 
-if (loginSubmit) {
+if (loginSubmit) { // burdan sonrasını değiştim
     loginSubmit.onclick = () => {
         const userId = document.getElementById('loginId').value;
         const userPass = document.getElementById('loginPass').value;
         const savedUser = JSON.parse(localStorage.getItem('nekoUser'));
 
-        if (savedUser && savedUser.id === userId && savedUser.pass === userPass) {
-            alert(`Welcome back, ${savedUser.id}!`);
-            window.location.href = "index.html"; // Sends them back to home
-        } else {
-            alert("Invalid ID or Password! Or maybe you need to sign up first? 🍵");
-        }
+        if (userId === adminUser.id && userPass === adminUser.pass) {
+    localStorage.setItem("nekoUser", JSON.stringify(adminUser));
+    showMessage(`Welcome back, ${adminUser.id}!`, "success");
+
+    setTimeout(function () {
+        window.location.href = "index.html";
+    }, 1500);
+}
+else if (savedUser && savedUser.id === userId && savedUser.pass === userPass) {
+    showMessage(`Welcome back, ${savedUser.id}!`, "success");
+
+    setTimeout(function () {
+        window.location.href = "index.html";
+    }, 1500);
+}
+else {
+    showMessage("Invalid ID or Password! Or maybe you need to sign up first? 🍵", "error");
+}
     };
 }
