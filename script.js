@@ -1,74 +1,107 @@
-<script>
-    // 1. Menu Logic
-    const openBtn = document.getElementById('openMenu');
-    const closeBtn = document.getElementById('closeMenu');
-    const menuOverlay = document.getElementById('menuOverlay');
+// === ORDERING & CART LOGIC === //
+const openOrder = document.getElementById('openOrder');
+const closeOrder = document.getElementById('closeOrder');
+const orderOverlay = document.getElementById('orderOverlay');
 
-    openBtn.onclick = () => menuOverlay.style.width = "100%";
-    closeBtn.onclick = () => menuOverlay.style.width = "0%";
+// We use 'if' statements to make sure these only run if the buttons actually exist on the page!
+if (openOrder && orderOverlay) {
+    openOrder.onclick = () => orderOverlay.style.width = "100%";
+}
 
-    // 2. Login & Dashboard Logic
-    const loginTrigger = document.getElementById('loginTrigger');
-    const loginOverlay = document.getElementById('loginOverlay');
-    const loginSubmit = document.getElementById('loginSubmit');
-    const dashboard = document.getElementById('pointsDashboard');
-    const progressBar = document.getElementById('progressBar');
+if (closeOrder && orderOverlay) {
+    closeOrder.onclick = () => orderOverlay.style.width = "0%";
+}
 
-    const users = {
-        "22401018": {
-            name: "Aishanur", pass: "Aishanur", points: 650,
-            orders: [
-                { item: "Iced Banana Cloud Matcha", notes: "With oat milk / Less ice", pts: "+100" },
-                { item: "Matcha Mochi Donut", notes: "Extra glaze", pts: "+50" },
-                { item: "Ceremonial Matcha", notes: "Hot / No sweetener", pts: "+100" }
-            ]
-        },
-        "22402692": {
-            name: "Beyza", pass: "Beyza", points: 450,
-            orders: [
-                { item: "Strawberry Matcha Latte", notes: "With soy milk / 50% sugar", pts: "+100" },
-                { item: "Iced Matcha", notes: "Regular milk / Extra ice", pts: "+100" }
-            ]
-        }
+let cart = [];
+let totalAmount = 0;
+let totalPoints = 0;
+
+function addToCart(itemName, price, points, milkSelectId, syrupSelectId) {
+    const milk = document.getElementById(milkSelectId).value;
+    const syrup = document.getElementById(syrupSelectId).value;
+
+    cart.push({ name: itemName, price: price, points: points, milk: milk, syrup: syrup });
+    totalAmount += price;
+    totalPoints += points;
+    updateCartUI();
+}
+
+function updateCartUI() {
+    const cartItemsList = document.getElementById('cartItems');
+    if (!cartItemsList) return; // Failsafe
+    
+    cartItemsList.innerHTML = ""; // clear list
+    
+    cart.forEach(item => {
+        cartItemsList.innerHTML += `
+            <li>
+                <div>
+                    <strong>${item.name}</strong><br>
+                    <span style="font-size: 0.8rem; color: #666;">${item.milk}, ${item.syrup}</span>
+                </div>
+                <span>$${item.price.toFixed(2)}</span>
+            </li>
+        `;
+    });
+
+    document.getElementById('cartTotal').innerText = totalAmount.toFixed(2);
+    document.getElementById('cartPoints').innerText = totalPoints;
+}
+
+function checkout() {
+    if(cart.length === 0) return alert("Your cart is empty! Add some matcha first 🍵");
+    
+    const savedUser = JSON.parse(localStorage.getItem('nekoUser'));
+    if (!savedUser) {
+        alert("Please Login or Sign Up to earn points on this order!");
+        window.location.href = "login.html"; // Redirects to your new login page!
+        return;
+    }
+
+    // Add points to user and save
+    savedUser.points += totalPoints;
+    localStorage.setItem('nekoUser', JSON.stringify(savedUser));
+
+    alert(`Order placed! You earned ${totalPoints} points ✨`);
+    
+    // Reset cart
+    cart = [];
+    totalAmount = 0;
+    totalPoints = 0;
+    updateCartUI();
+    if(orderOverlay) orderOverlay.style.width = "0%";
+}
+
+// === AUTHENTICATION LOGIC (Login & Register) === //
+const loginSubmit = document.getElementById('loginSubmit');
+const signupSubmit = document.getElementById('signupSubmit');
+
+if (signupSubmit) {
+    signupSubmit.onclick = () => {
+        const userId = document.getElementById('newUserId').value;
+        const userPass = document.getElementById('newUserPass').value;
+
+        if (!userId || !userPass) return alert("Please enter ID and Password! 🍵");
+
+        const newUser = { id: userId, pass: userPass, points: 100 }; // Gives them 100 free points!
+        localStorage.setItem('nekoUser', JSON.stringify(newUser));
+        
+        alert("Account created! Let's get some matcha ✨");
+        window.location.href = "index.html"; // Sends them back to home
     };
+}
 
-    loginTrigger.onclick = (e) => {
-        e.preventDefault();
-        loginOverlay.style.width = "100%";
-    };
-
+if (loginSubmit) {
     loginSubmit.onclick = () => {
-        const userField = document.getElementById('username').value;
-        const passField = document.getElementById('password').value;
-        const userData = users[userField];
+        const userId = document.getElementById('loginId').value;
+        const userPass = document.getElementById('loginPass').value;
+        const savedUser = JSON.parse(localStorage.getItem('nekoUser'));
 
-        if (userData && passField === userData.pass) {
-            loginOverlay.style.width = "0%";
-            dashboard.style.width = "100%";
-            
-            document.querySelector('#pointsDashboard h2').innerText = `${userData.name}'s Profile`;
-            document.getElementById('userPoints').innerText = userData.points;
-            
-            let progressPercent = (userData.points / 800) * 100;
-            setTimeout(() => { progressBar.style.width = progressPercent + "%"; }, 500);
-
-            const orderList = document.getElementById('orderList');
-            orderList.innerHTML = ""; 
-            userData.orders.forEach(order => {
-                orderList.innerHTML += `
-                    <li style="margin-bottom: 15px; border-bottom: 0.5px solid rgba(47, 93, 58, 0.2); padding-bottom: 8px;">
-                        <div style="display: flex; justify-content: space-between; align-items: baseline;">
-                            <span style="font-weight: bold; text-transform: uppercase; font-size: 0.85rem;">${order.item}</span>
-                            <span style="color: #6b8f71; font-size: 0.8rem; font-weight: bold;">${order.pts}</span>
-                        </div>
-                        <div style="font-style: italic; font-size: 0.75rem; color: #666; margin-top: 2px;">${order.notes}</div>
-                    </li>`;
-            });
+        if (savedUser && savedUser.id === userId && savedUser.pass === userPass) {
+            alert(`Welcome back, ${savedUser.id}!`);
+            window.location.href = "index.html"; // Sends them back to home
         } else {
-            alert("Invalid ID or Password 🍵");
+            alert("Invalid ID or Password! Or maybe you need to sign up first? 🍵");
         }
     };
-
-    document.getElementById('closeLogin').onclick = () => loginOverlay.style.width = "0%";
-    document.getElementById('closeDashboard').onclick = () => dashboard.style.width = "0%";
-</script>
+}
