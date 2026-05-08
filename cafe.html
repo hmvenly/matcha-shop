@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cafe - Neko Matcha</title>
+    
+    <link rel="icon" type="image/png" href="assets/images/favicon.png">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="assets/styles/style.css"> 
+
+    <style>
+        .cafe-hero {
+            text-align: center;
+            margin-top: 40px;
+            margin-bottom: 60px;
+        }
+        .cafe-hero img {
+            width: 100%;
+            max-width: 800px;
+            border-radius: 20px;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+            object-fit: cover;
+        }
+
+        /* Reviews Section */
+        .reviews-section {
+            background-color: #f8f6f0; 
+            padding: 80px 20px;
+            border-radius: 30px;
+            margin-bottom: 60px;
+        }
+        
+        .reviews-title {
+            text-align: center;
+            font-family: 'Outfit', sans-serif;
+            color: var(--matcha-dark);
+            font-size: 3rem;
+            margin-bottom: 60px;
+            font-style: italic;
+        }
+
+        .reviews-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        /* The Aesthetic Cards */
+        .review-card {
+            padding: 30px;
+            border-radius: 15px;
+            width: 300px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+            position: relative;
+            transition: transform 0.3s ease;
+        }
+
+
+        .card-1 { background-color: #eae5d9; color: #2b3a2f; transform: rotate(-2deg); }
+        .card-2 { background-color: #8c9e83; color: white; transform: rotate(2deg); margin-top: 20px; }
+        .card-3 { background-color: #2b3a2f; color: #eae5d9; transform: rotate(-1deg); }
+
+        .review-card:hover {
+            transform: translateY(-10px) rotate(0deg);
+            z-index: 10;
+        }
+
+        .stars {
+            color: #2b3a2f; 
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+            letter-spacing: 2px;
+        }
+        .card-2 .stars, .card-3 .stars { color: #eae5d9; } 
+
+        .review-text {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+
+        .reviewer {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-weight: 600;
+        }
+
+        .reviewer-icon {
+            width: 40px;
+            height: 40px;
+            background-color: white;
+            color: #2b3a2f;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+        .card-1 .reviewer-icon { background-color: #2b3a2f; color: white; }
+    </style>
+</head>
+<body class="d-flex flex-column min-vh-100 bg-light"> 
+
+    <header class="container mt-3"> 
+        <div class="logo">
+            <h1>ネコ抹茶</h1>
+            <p>Neko Matcha</p>
+        </div>
+                  <nav class="menu">
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="our-matcha.html">Our Matcha</a></li>
+            <li><a href="cafe.html">Cafe</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="login.html" id="accountLink">Account <i class="fa-solid fa-user"></i></a></li> 
+        </ul>
+    </nav>
+    </header>
+
+    <main class="container flex-grow-1">
+        
+        <!-- CAFE PHOTO SECTION -->
+        <section class="cafe-hero">
+
+            <img src="assets/images/cafe44.png" alt="Neko Matcha Waits For You!">
+        </section>
+
+        <!-- REVIEWS SECTION -->
+        <section class="reviews-section shadow-sm">
+            <h2 class="reviews-title">Love letters from clients</h2>
+            
+            <div class="reviews-container">
+                
+                <!-- Review 1 (Light Beige) -->
+                <div class="review-card card-1">
+                    <div class="stars">★★★★★</div>
+                    <p class="review-text">They have such an in-depth understanding of the science behind matcha. They are able to talk about it with such ease that anyone can understand. The staff is so sweet and provides amazing care.</p>
+                    <div class="reviewer">
+                        <div class="reviewer-icon">Q</div>
+                        <span>Quinn</span>
+                    </div>
+                </div>
+
+                <!-- Review 2 (Soft Green) -->
+                <div class="review-card card-2">
+                    <div class="stars">★★★★★</div>
+                    <p class="review-text">Neko Matcha is highly experienced, thorough, and pleasant. The baristas are knowledgeable and detailed in explaining the ceremonial process and very gentle performing it. Highly recommend to everybody!</p>
+                    <div class="reviewer">
+                        <div class="reviewer-icon">A</div>
+                        <span>Alex</span>
+                    </div>
+                </div>
+
+                <!-- Review 3 (Dark Matcha) -->
+                <div class="review-card card-3">
+                    <div class="stars">★★★★★</div>
+                    <p class="review-text">This place is incredible. They are so thorough, very knowledgeable & skilled, but also just an all around delight to be around making the experience so relaxed. They make you feel right at home.</p>
+                    <div class="reviewer">
+                        <div class="reviewer-icon">C</div>
+                        <span>Courtney</span>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- External Libraries -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/SlickNav/1.0.10/jquery.slicknav.min.js"></script>
+    
+    <!-- Core Scripts -->
+    <script src="assets/scripts/data.js"></script>
+    <script src="assets/scripts/auth.js"></script> <!-- Included so the Account/Logout logic works here too -->
+</body>
+</html>
