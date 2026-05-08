@@ -22,14 +22,14 @@
         </div>
 
         <nav class="menu">
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="#">Our Matcha</a></li>
-                <li><a href="#">Cafe</a></li>
-                <li><a href="#">Contact</a></li>
-                 <li><a href="login.html" id="accountLink">Account <i class="fa-solid fa-user"></i></a></li> <!--değiştim-->
-            </ul>
-        </nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="our-matcha.html">Our Matcha</a></li>
+            <li><a href="cafe.html">Cafe</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="login.html" id="accountLink">Account <i class="fa-solid fa-user"></i></a></li> 
+        </ul>
+    </nav>
     </header>
 
     <section class="picture-text">
@@ -47,66 +47,34 @@
     </section>
 
     <main>
-        <section class="featured">
-            <h2 class="section-title">Featured Matcha Drinks</h2>
-            <div class="card-container">
-                <div class="card shadow-sm rounded">
-                    <h3>Matcha Latte</h3>
-                    <p>Smooth, creamy, and balanced with rich Japanese matcha.</p>
-                </div>
-                <div class="card shadow-sm rounded">
-                    <h3>Iced Matcha</h3>
-                    <p>Fresh and cool matcha for a clean and vibrant taste.</p>
-                </div>
-                <div class="card shadow-sm rounded">
-                    <h3>Matcha Dessert</h3>
-                    <p>Soft sweetness with deep green tea flavor and texture.</p>
-                </div>
+    <!-- UPDATED SECTION TAG -->
+    <section class="featured" id="aesthetic-menu"> 
+        <h2 class="section-title">Featured Matcha Drinks</h2>
+        <div class="card-container">
+            <div class="card shadow-sm rounded">
+                <h3>Matcha Latte</h3>
+                <p>Smooth, creamy, and balanced with rich Japanese matcha.</p>
             </div>
-        </section>
-    </main>
-
+           
+        </div>
+    </section>
+</main>
     <div id="orderOverlay" class="overlay">
         <button id="closeOrder" class="close-btn">&times;</button>
         <div class="overlay-content order-content">
             <h2 class="section-title">Build Your Matcha</h2>
 
-            <div class="order-grid" style="display: flex; gap: 20px; justify-content: center;">
-                
-                <div class="order-card shadow-sm rounded bg-white p-3 text-center" style="width: 250px;">
-                    <img src="assets/images/matcha.png" alt="Ceremonial Iced Matcha" class="img-fluid rounded mb-3" style="height: 180px; width: 100%; object-fit: cover;">
-                    <h4>Ceremonial Iced Matcha</h4>
-                    <p class="price">$6.50 <span class="pts-badge" style="color: var(--matcha-light);">+65 pts</span></p>
-                    <select id="milk1" class="form-select mb-2">
-                        <option value="Regular Milk">Regular Milk</option>
-                        <option value="Almond Milk">Almond Milk</option>
-                        <option value="Oat Milk">Oat Milk</option>
-                    </select>
-                    <select id="syrup1" class="form-select mb-3">
-                        <option value="No Syrup">No Syrup</option>
-                        <option value="Classic Syrup">Classic Syrup</option>
-                    </select>
-                    <button class="btn add-to-cart w-100" onclick="addToCart('Ceremonial Iced Matcha', 6.50, 65, 'milk1', 'syrup1')">Add</button>
-                </div>
-
-                <div class="order-card shadow-sm rounded bg-white p-3 text-center" style="width: 250px;">
-                    <img src="assets/images/matchastrawberry.png" alt="Strawberry Matcha Cloud" class="img-fluid rounded mb-3" style="height: 180px; width: 100%; object-fit: cover;">
-                    <h4>Strawberry Matcha Cloud</h4>
-                    <p class="price">$7.50 <span class="pts-badge" style="color: var(--matcha-light);">+75 pts</span></p>
-                    <select id="milk2" class="form-select mb-2">
-                        <option value="Regular Milk">Regular Milk</option>
-                        <option value="Almond Milk">Almond Milk</option>
-                    </select>
-                    <select id="syrup2" class="form-select mb-3">
-                        <option value="No Syrup">No Syrup</option>
-                        <option value="Strawberry Purée">Extra Strawberry</option>
-                    </select>
-                    <button class="btn add-to-cart w-100" onclick="addToCart('Strawberry Matcha Cloud', 7.50, 75, 'milk2', 'syrup2')">Add</button>
-                </div>
-
+            <!-- search bar degisitm -->
+            <div class="search-container text-center mb-4">
+                <input type="text" id="searchInput" class="form-control d-inline-block p-3 shadow-sm" placeholder="Search for a drink... 🍵" style="max-width: 400px; border-radius: 25px; border: 2px solid #eae5d9; outline: none;">
             </div>
 
-            <div class="cart-summary">
+            <!-- Empty Container  -->
+            <div class="order-grid" id="liveMenuGrid" style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
+                <!-- JS will inject the drinks here -->
+            </div>
+
+            <div class="cart-summary mt-5 pt-4"></div>
                 <h3>Your Cart</h3>
                 <ul id="cartItems"></ul>
                 <div class="cart-totals">
@@ -118,11 +86,14 @@
         </div>
     </div>
 
-    <!-- shared Data  -->
-    <script src="assets/scripts/data.js"></script>
-     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script> <!--ekledim-->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script> <!--ekledim-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/SlickNav/1.0.10/jquery.slicknav.min.js"></script> <!--ekledim-->
-    <!-- main logic scripts  -->
-    <script src="assets/scripts/script.js"></script>
+    
+    <!-- shared Data -->
+    <script src="assets/scripts/data.js"></script>
+    
+    <!-- main logic scripts -->
+    <script src="assets/scripts/main.js"></script>
+    <script src="assets/scripts/auth.js"></script>
 </body>
 </html>
