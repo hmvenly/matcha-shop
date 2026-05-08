@@ -1,4 +1,6 @@
-/* Import a clean, modern font */
+html {
+    scroll-behavior: smooth;
+}
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&display=swap');
 
 :root {
@@ -234,13 +236,10 @@ main {
     z-index: 1000;
     top: 0;
     left: 0;
-    background-color: rgba(252, 249, 242, 0.95);
-    backdrop-filter: blur(5px);
-    overflow-x: hidden;
-    transition: 0.4s;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    transition: 0.5s;
+    overflow-y: auto !important; 
+    overflow-x: hidden; 
+    -webkit-overflow-scrolling: touch; 
 }
 
 .overlay-content, .login-card {
@@ -323,56 +322,43 @@ input:focus {
     border-radius: 10px;
 }
 
-/* burdan sonrasını ekledim */
+.overlay-content.order-content {
+    max-width: 1200px !important; 
+    width: 95%;
+}
+
+/* TOAST NOTIFICATION STYLES */
+
 .toast-box {
     position: fixed;
-    top: 25px;
-    right: 25px;
-    z-index: 2000;
+    top: 20px;
+    right: 20px;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 
 .toast-message {
-    background-color: var(--matcha-dark);
+    background-color: #333;
     color: white;
-    padding: 15px 22px;
-    border-radius: 15px;
-    margin-bottom: 10px;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.15);
-    animation: slideIn 0.4s ease;
+    padding: 15px 25px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    font-weight: 600;
+    font-family: 'Outfit', sans-serif;
+    animation: slideIn 0.3s ease-out;
+}
+
+.toast-message.success {
+    background-color: #3e7b51; /* Matcha Green */
 }
 
 .toast-message.error {
-    background-color: #8b2f2f;
+    background-color: #d9534f; /* Red */
 }
 
 @keyframes slideIn {
-    from {
-        transform: translateX(120%);
-        opacity: 0;
-    }
-    to {
-        transform: translateX(0);
-        opacity: 1;
-    }
-}
-
-/* Responsive jQuery Menu */
-.slicknav_menu {
-    display: none;
-    background: var(--matcha-dark);
-}
-
-@media screen and (max-width: 768px) {
-    .menu {
-        display: none;
-    }
-
-    .slicknav_menu {
-        display: block;
-    }
-
-    header.container {
-        flex-direction: column;
-        gap: 15px;
-    }
+    from { transform: translateX(100%); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
 }
