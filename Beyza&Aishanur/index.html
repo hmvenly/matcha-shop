@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ネコ抹茶 - Neko Matcha</title>
+    
+    <link rel="icon" type="image/png" href="assets/images/favicon.png">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/SlickNav/1.0.10/slicknav.min.css"> <!--ekledim-->
+    
+    <link rel="stylesheet" href="assets/styles/style.css">
+</head>
+<body>
+
+    <header class="container mt-3"> 
+        <div class="logo">
+            <h1>ネコ抹茶</h1>
+            <p>Neko Matcha</p>
+        </div>
+
+        <nav class="menu">
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="our-matcha.html">Our Matcha</a></li>
+            <li><a href="cafe.html">Cafe</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="login.html" id="accountLink">Account <i class="fa-solid fa-user"></i></a></li> 
+        </ul>
+    </nav>
+    </header>
+
+    <section class="picture-text">
+        <video autoplay loop muted playsinline class="bg-video">
+            <source src="assets/images/cafe.mp4" type="video/mp4">
+        </video>
+        
+        <div class="video-overlay"></div>
+
+        <div class="pic">
+            <h2>PREMIUM JAPANESE MATCHA</h2>
+            <p>Exquisite taste, joyful experience..</p>
+            <button id="openOrder" class="btn">Order Now</button>
+        </div>
+    </section>
+
+    <main>
+
+    <section class="featured" id="aesthetic-menu"> 
+        <h2 class="section-title">Featured Matcha Drinks</h2>
+        <div class="card-container">
+            <div class="card shadow-sm rounded">
+                <h3>Matcha Latte</h3>
+                <p>Smooth, creamy, and balanced with rich Japanese matcha.</p>
+            </div>
+           <div class="card shadow-sm rounded">
+                <h3>Matcha Frappe</h3>
+                <p>Creamy blend of matcha topped with a light whipped finish.</p>
+            </div>
+            <div class="card shadow-sm rounded">
+                <h3> Stawberry Matcha Latte</h3>
+                <p>Sweet strawberry purée layered with milk and topped with matcha.</p>
+            </div>
+        </div>
+    </section>
+</main>
+    <div id="orderOverlay" class="overlay">
+        <button id="closeOrder" class="close-btn">&times;</button>
+        <div class="overlay-content order-content">
+            <h2 class="section-title">Build Your Matcha</h2>
+
+            <!-- search bar degisitm -->
+            <div class="search-container text-center mb-4">
+                <input type="text" id="searchInput" class="form-control d-inline-block p-3 shadow-sm" placeholder="Search for a drink... 🍵" style="max-width: 400px; border-radius: 25px; border: 2px solid #eae5d9; outline: none;">
+            </div>
+            
+            <div class="order-grid" id="liveMenuGrid" style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
+             
+            </div>
+
+            <div class="cart-summary mt-5 pt-4"></div>
+                <h3>Your Cart</h3>
+                <ul id="cartItems"></ul>
+                <div class="cart-totals">
+                    <p>Total: $<span id="cartTotal">0.00</span></p>
+                    <p>Points to Earn: <span id="cartPoints" style="color: var(--matcha-dark); font-weight: bold;">0</span> pts</p>
+                </div>
+                <button class="btn" style="width:100%; margin-top: 15px;" onclick="checkout()">Checkout</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script> <!--ekledim-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/SlickNav/1.0.10/jquery.slicknav.min.js"></script> <!--ekledim-->
+    
+
+    <script src="assets/scripts/data.js"></script>    
+    <script src="assets/scripts/main.js"></script>
+    <script src="assets/scripts/auth.js"></script>
+
+<footer style="background-color: #2d3e2d; color: #eae5d9; padding: 30px 50px; margin-top: 50px; font-family: 'Outfit', sans-serif;">
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+    
+        <div style="font-size: 0.85rem; line-height: 1.6; text-align: left;">
+            <p style="margin: 0;">📍 Based in Ankara, Türkiye</p>
+            <p style="margin: 0;">📞 +000000</p>
+        </div>
+
+        <div style="font-size: 0.85rem; opacity: 0.8; text-align: right;">
+            <p style="margin: 0;">© 2026 Neko Matcha. All rights reserved.</p>
+        </div>
+
+    </div>
+</footer>
+
+</body>
+</html>
