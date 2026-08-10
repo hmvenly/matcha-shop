@@ -97,6 +97,14 @@
             color: #8c9e83;
         }
     </style>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+        <script type="text/javascript">
+   (function(){
+      emailjs.init({
+        publicKey: "qCu1biltoNIC6c6Ra",
+      });
+   })();
+</script>
 </head>
 <body class="d-flex flex-column min-vh-100"> 
 
@@ -131,17 +139,17 @@
                         
                         <div class="col-sm-7 pe-md-4">
                             <form id="contactForm">
-                                <input type="text" class="contact-input" placeholder="Full Name" required>
-                                <input type="email" class="contact-input" placeholder="E-mail" required>
-                                <textarea class="contact-input" rows="1" placeholder="Message" required style="resize: none;"></textarea>
-                                
-                                <button type="button" class="contact-btn mt-2" onclick="showMessage('Message sent! We will get back to you soon. 🍵', 'success')">Contact Us</button>
-                            </form>
+                                    <input type="text" id="senderName" class="contact-input" placeholder="Full Name" required>
+                                    <input type="email" id="senderEmail" class="contact-input" placeholder="E-mail" required>
+                                    <textarea id="senderMessage" class="contact-input" rows="1" placeholder="Message" required style="resize: none;"></textarea>
+                                    
+                                    <button type="submit" class="contact-btn mt-2">Contact Us</button>
+                                </form>
                         </div>
 
                         <div class="col-sm-5 mt-5 mt-sm-0">
                             <div class="info-title">Contact</div>
-                            <div class="info-text">meow@nekomatcha.com</div>
+                            <div class="info-text">nekoomatcha@gmail.com</div>
 
                             <div class="info-title">Based in</div>
                             <div class="info-text">Ankara, Türkiye</div>
@@ -185,5 +193,7 @@
     <!-- Core Scripts -->
     <script src="assets/scripts/data.js"></script>
     <script src="assets/scripts/auth.js"></script> 
+    <script src="assets/scripts/contact.js"></script>
+
 </body>
 </html>
